@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    float num, qua;
+    printf("digite um numero real\n");
+    scanf("%f", &num );
+    qua= num * num;
+    printf("o quadrado eh %f", qua);
+    return 0;
+}
