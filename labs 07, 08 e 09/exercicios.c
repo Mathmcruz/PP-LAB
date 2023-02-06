@@ -1315,3 +1315,543 @@ int main()
 }
 
 2)
+#include <stdio.h>
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    if(px > py){
+        printf("%d", px);
+    }
+    else{
+        printf("%d", py);
+    }
+    return 0;
+}
+
+3)
+#include <stdio.h>
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    printf("Digite um valor inteiro de x e y: ");
+    scanf("%d %d", &x, &y);
+    if(px > py){
+        printf("%d", *px);
+    }
+    else{
+        printf("%d", *py);
+    }
+    return 0;
+}
+
+4)
+#include <stdio.h>
+
+void inversao(int x, int y){
+    int inv = x;
+    x = y;
+    y = inv;
+    printf("A inversao dos valores eh: %d e %d", x, y);
+}
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    printf("Digite um valor inteiro de x e y: ");
+    scanf("%d %d", &x, &y);
+    inversao(*px, *py);
+    return 0;
+}
+
+5)
+#include <stdio.h>
+
+void ordem_decrescente(int x, int y){
+    int inv;
+    if(x < y){
+        inv = x;
+        x = y;
+        y = inv;
+    }
+    printf("A ordem decrescente eh: %d e %d", x, y);
+}
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    printf("Digite um valor inteiro de x e y: ");
+    scanf("%d %d", &x, &y);
+    ordem_decrescente(*px, *py);
+    return 0;
+}
+
+6)
+#include <stdio.h>
+
+void dobro(int x, int y){
+    x*= 2;
+    y*= 2;
+    printf("A soma do dobro de X e Y eh: %d", x + y);
+}
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    printf("Digite um valor inteiro de x e y: ");
+    scanf("%d %d", &x, &y);
+    dobro(*px, *py);
+    return 0;
+}
+
+7)
+#include <stdio.h>
+
+void soma(int *x, int *y){
+    *x += *y;
+}
+
+int main()
+{
+    int x, y;
+    int *px = &x, *py = &y;
+    printf("Digite um valor inteiro de x e y: ");
+    scanf("%d %d", &x, &y);
+    soma(px, py);
+    printf("x = %d\ny = %d", x, y);
+    return 0;
+}
+
+8)
+#include <stdio.h>
+
+int main(){
+    float vet[10];
+    float *p = vet;
+    int i;
+    for(i = 0; i < 10; i++){
+        printf("O endereco da posicao %d do vetor eh: %d\n", i+1, &p[i]);
+    }
+    return 0;
+}
+
+9)
+#include <stdio.h>
+
+int main()
+{
+    float mat[3][3];
+    int i, j;
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            printf("O endereco da posicao [%d, %d] da matriz: %p\n", i+1, j+1, &mat[i][j]);
+        }
+    }
+    return 0;
+}
+
+10)
+#include <stdio.h>
+
+int main()
+{
+    int vet[5];
+    int i;
+    for(i = 0; i < 5; i++){
+        int *p = vet + i;
+        printf("Digite o valor da posicao %d do vetor: ", i+1);
+        scanf("%d", p);
+        *p *= 2;
+    }
+    printf("O vetor com os valores dobrados: ");
+    for(i = 0; i < 5; i++){
+        int *p = vet + i;
+        printf(i != 4 ? "%d, " : "%d.", *p);
+    }
+    return 0;
+}
+
+11)
+#include <stdio.h>
+
+int main()
+{
+    int vet[5];
+    int i;
+    for(i = 0; i < 5; i++){
+        int *p = vet + i;
+        printf("Digite o valor da posicao %d do vetor: ", i+1);
+        scanf("%d", p);
+    }
+    printf("O endereco das posicoes pares do vetor sao: ");
+    for(i = 0; i < 5; i++){
+        int *p = vet + i;
+        if(*p % 2 == 0){
+            printf("%p, ", p);
+        }
+    }
+    return 0;
+}
+
+12)
+#include <stdio.h>
+
+int ordem(int *x, int *y, int *z){
+    int vet[3]= {*x, *y, *z}, sup;
+    int i, j;
+    for(i = 0; i < 3; i++){
+        for(j = 0; j < 3; j++){
+            if(vet[i] < vet[j]){
+                sup = vet[i];
+                vet[i] = vet[j];
+                vet[j] = sup;
+            }
+        } 
+    }
+    *x = vet[0];
+    *y = vet[1];
+    *z = vet[2];
+    if(*x == *y && *y == *z){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+int main()
+{
+    int x, y, z, valor;
+    int *px = &x, *py = &y, *pz = &z;
+    printf("Digite 3 valores inteiros: ");
+    scanf("%d %d %d", &x, &y, &z);
+    valor = ordem(px, py, pz);
+    printf("Valores: %d, %d, %d. ", *px, *py, *pz);
+    printf(valor == 1 ? "\nValores iguais." : "\nValores diferentes.");
+}
+
+13)
+#include <stdio.h>
+
+int conferencia(char *x, char *y){
+  int i, posInicial = 0;
+
+  for (i = 0; *(x + i) != '\n' ; i++) {
+    if (*(y + posInicial) == '\n') {
+      return 1;
+    }
+    if (*(x + i) == *(y + posInicial)) {
+      posInicial++;
+    }else{
+      posInicial = 0;
+    }
+  }
+
+  return 0;
+}
+
+int main() {
+  char a[100], b[100];
+  printf("Digite a primeira string: ");
+  fgets(a, 100, stdin);
+  printf("Digite a segunda string: ");
+  fgets(b, 100, stdin);
+
+  if (conferencia(a, b)) {
+    printf("Eh uma substring!\n");
+  }else{ 
+      printf("Nao eh uma substring!\n");
+  }
+  return 0;
+}
+
+14)
+#include <stdio.h>
+
+void fill(int *vet, int val){
+    for (int i = 0; i < 15; i++) {
+        *(vet + i) = val;
+    }
+}
+
+int main(){
+  int vet[15];
+  fill(vet, 4);
+  for (int i = 0; i < 15; i++) {
+    printf(i != 9 ? "%d, " : "%d.", vet[i]);
+  }
+  return 0;
+}
+
+15)
+void printVet(int *vet, int size){
+    int i;
+    for(i=0; i < size; i++){
+        printf(i != size - 1 ? "%d, " : "%d.", (*(vet + i)));
+    }
+}...
+
+
+16)
+#include <stdio.h>
+
+int main(){
+    int a;
+    int *b, **c, ***d;
+    printf("Digite um inteiro: ");
+    scanf("%d", &a);
+    b = &a;
+    c = &b;
+    d = &c;
+    printf("Dobro: %d\nTriplo: %d\nQuadruplo: %d", *b*2, **c*3, ***d*4);
+    return 0;
+}
+
+17)
+#include <stdio.h>
+
+void frac(float num, int *inteiro, float *frac){
+  *inteiro = (int) num;
+  *frac = num - *inteiro;
+}
+
+int main() {
+  float num, parteFrac;
+  int parteInt;
+  printf("Digite um número real: ");
+  scanf("%f", &num);
+  frac(num, &parteInt, &parteFrac);
+  printf("Parte inteira: %d\n", parteInt);
+  printf("Parte fracionária: %.3f\n", parteFrac);
+  return 0;
+}
+
+18)
+
+#include <stdio.h>
+
+void calc_esfera(float R, float *area, float *volume){
+  *area = 4 * 3.141592 * (R * R);
+  *volume = 4.0 / 3.0 * 3.141592 * (R * R * R);
+}
+
+int main() {
+  float R, area, volume;
+  printf("Digite o raio da esfera: ");
+  scanf("%f", &R);
+  calc_esfera(R, &area, &volume);
+  printf("Área da superfície: %.3f\n", area);
+  printf("Volume: %.3f\n", volume);
+  return 0;
+}
+
+19)
+void Maior_do_Vetor(int *vet, int size){
+    int i, times = 1, maior =* vet;
+    for(i=1; i < size; i++){
+        if(*(vet + i) == maior){
+            times++;
+        }  
+        if(*(vet + i) > maior){
+            times = 1;
+            maior = *(vet + i);
+        }
+    }
+    printf("O maior eh: %d, e ocorreu %d vezes.", maior, times);
+}
+
+20)
+#include <stdio.h>
+
+int negativos(float *vet, int N){
+  int count = 0;
+
+  for (int i = 0; i < N; i++) {
+    if (*(vet + i) < 0) {
+      count++;
+    }
+  }
+  return count;
+}
+
+int main() {
+  float vet[50];
+  int N;
+  printf("Digite o tamanho do vetor: ");
+  scanf("%d", &N);
+  for (int i = 0; i < N; i++) {
+    printf("Digite o numero %d do vetor: ", i + 1);
+    scanf("%f", vet + i);
+  }
+  printf("A quantidade de numeros negativos eh: %d\n", negativos(vet, N));
+  return 0;
+}
+
+21)
+#include <stdio.h>
+
+void soma(int *vet, int valor){
+    for (int i = 0; i < 10; i++) {
+        *(vet + i) += valor;
+    }
+}
+
+int main() {
+    int vet[10]={2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+    soma(vet, 1);
+    for (int i = 0; i < 10; i++) {
+        printf(i != 9 ? "%d, " : "%d.", vet[i]);
+    }
+    return 0;
+}
+
+22)
+int soma(int *vet, int *vet2, int size1, int size2){
+    int i;
+    if(size1 == size2){
+        int vet3[zize1];
+        for(i=0; i< size1; i++){
+            *(vet3 + i) = *(vet + i) + *(vet2 + i);
+        }
+        return *vet3;
+    }else{
+        return 0;
+    }
+}
+
+23)
+#include <stdio.h>
+
+int maiorValor(int *vet, int size){
+    int maior= vet;
+    int i;
+    for(i = 0; i < size; i++){
+        if(*(vet + i) > maior){
+            maior = *(vet + i);
+        }
+    }
+}
+
+int main(){
+    int N, k, i, j;
+    int *p;
+    printf("Qual o tamanho do vetor? ");
+    scanf("%d", &N);
+    int vet[N];
+    for(i = 0; i < N; i++){
+        p = vet + i;
+        printf("Digite o valor da posicao %d: ", i+1);
+        scanf("%d", p);
+    }
+    printf("Quantos valores do vetor voce deseja por linha? ");
+    scanf("%d", &k);
+    for(i = 0; i < N; i++){
+        for(j = 0; j < k; j++){
+            printf("%d, ", vet[i]);
+            i++;
+        }
+        printf("\n");
+    }
+    printf("O maior valor eh: %d", maiorValor(vet, N));
+    return 0;
+}
+
+24)
+#include <stdio.h>
+
+void minEmax(int *vet, int Max, int Min){
+    Max = *vet;
+    Min = *vet;
+    int i;
+    for(i = 0; i < 5; i++){
+        if(*(vet + i) > Max){
+            Max = *(vet + i);
+        }
+        if(*(vet + i) < Min){
+            Min = *(vet + i);
+        }
+    }
+    printf("Maximo: %d", Max);
+    printf("\nMinimo: %d", Min);
+}
+
+int main()
+{
+    int vetor[5];
+    int i, min, max;
+    int *p, *pMin = &min, *pMax= &max;
+    for(i=0; i<5; i++){
+        int *p = vetor + i;
+        printf("Digite o valor da posicao %d: ", i+1);
+        scanf("%d", p);
+    }
+    minEmax(vetor, *pMax, *pMin);
+    return 0;
+}
+
+25)
+#include <stdio.h>
+
+void Ler_as_notas(float *nota1, float *nota2){
+  printf("Digite a primeira nota: ");
+  scanf("%f", nota1);
+  printf("Digite a segunda nota: ");
+  scanf("%f", nota2);
+}
+
+float mediaSimples(float nota1, float nota2){
+  return (nota1 + nota2) / 2;
+}
+
+float mediaPonderada(float nota1, float nota2){
+  return (nota1 + nota2 * 2) / 3;
+}
+
+int main()
+{
+  float n1, n2;
+  Ler_as_notas(&n1, &n2);
+  printf("Media simples: %.2f\n", mediaSimples(n1, n2));
+  printf("Media ponderada: %.2f\n", mediaPonderada(n1, n2));
+  return 0;
+}
+
+26)
+#include <stdio.h>
+#include <math.h>
+
+int raizes(float a, float b, float c, float *x1, float *x2){
+    float delta;
+    delta = (b * b) - 4 * a * c;
+    if (delta < 0){
+        return 0;
+    }else if (delta == 0){
+        *x1 = -b / (2 * a);
+        return 1;
+    }else{
+        *x1 = (-b + sqrt(delta)) / (2 * a);
+        *x2 = (-b - sqrt(delta)) / (2 * a);
+        return 2;
+    }
+}
+
+int main(){
+    float a, b, c, x1, x2;
+    int Raizes;
+    printf("Digite o valor de a, b e c (ax2+ bx + c = 0) da equacao de segundo grau: ");
+    scanf("%f %f %f", &a, &b, &c);
+    Raizes = raizes(a, b, c, &x1, &x2);
+    if (Raizes == 0) {
+        printf("Não existem raízes reais.\n");
+    }else if(Raizes == 1){
+        printf("Existe uma raiz real: %.3f\n", x1);
+    }else{
+        printf("Existem duas raízes reais: %.3f e %.3f\n", x1, x2);
+    }
+    return 0;
+}
