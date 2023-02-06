@@ -91,29 +91,6 @@ int main()
 return 0;
 }
 
-OU
-
-#include <stdio.h>
-
-int main(){
-  char str[100], subs;
-  int i, count = 0;
-  printf("Digite uma frase para contar quantas vogais possui: ");
-  fgets(str, 100, stdin);
-  printf("Digite uma vogal ou uma consoante para substituir as vogais: ");
-  scanf("%c", &subs);
-  for (i = 0; str[i] != '\0'; i++)
-  {
-    if (str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u' || str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U')
-    {
-      str[i] = subs;
-      count++;
-    }
-  }
-  printf("A string tem %d vogais\n", count);
-  printf("%s", str);
-  return 0;
-}
 
 5)
 #include <stdio.h>
